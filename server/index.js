@@ -8,15 +8,15 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Asegurar que la carpeta de subidas exista
-const uploadsDir = path.join(__dirname, 'uploads');
+// Asegurar que la carpeta de subidas exista en la raíz del proceso
+const uploadsDir = path.resolve('uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(uploadsDir));
 
 // Servir archivos estáticos del frontend (Producción)
 app.use(express.static(path.join(__dirname, '../client/dist')));
