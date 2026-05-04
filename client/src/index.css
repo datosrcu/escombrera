@@ -189,12 +189,20 @@ select option {
 
 .camera-container {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
   background: #000;
   border-radius: 1rem;
   overflow: hidden;
   position: relative;
   margin-bottom: 1rem;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 600px) {
+  .camera-container {
+    aspect-ratio: 3/4; /* Más vertical en móviles */
+    min-height: 400px;
+  }
 }
 
 video, canvas {

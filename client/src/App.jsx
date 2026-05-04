@@ -123,7 +123,11 @@ const startCamera = async () => {
     setPhoto(null);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { facingMode: 'environment' } 
+        video: { 
+          facingMode: 'environment',
+          width: { ideal: 1920 },
+          height: { ideal: 1080 }
+        } 
       });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
@@ -145,7 +149,7 @@ const startCamera = async () => {
       canvas.toBlob((blob) => {
         setPhoto(blob);
         stopCamera();
-      }, 'image/jpeg');
+      }, 'image/jpeg', 0.9);
     }
   };
 
