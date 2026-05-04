@@ -118,11 +118,13 @@ function App() {
     }
   };
 
-  const startCamera = async () => {
+const startCamera = async () => {
     setShowCamera(true);
     setPhoto(null);
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        video: { facingMode: 'environment' } 
+      });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
