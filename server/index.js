@@ -111,8 +111,8 @@ app.get('/api/movimientos/historial', (req, res) => {
     });
 });
 
-// Ruta comodín para el frontend
-app.get('*', (req, res) => {
+// Ruta comodín para el frontend (Compatible con Express 5)
+app.get('(.*)', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
