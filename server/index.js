@@ -8,10 +8,17 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Asegurar que la carpeta de subidas exista en la raíz del proceso
-const uploadsDir = path.resolve('uploads');
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
+// Asegurar que la carpeta de subidas exista con diagnóstico
+const uploadsDir = path.resolve(__dirname, 'uploads');
+console.log("RUTA ABSOLUTA DE UPLOADS:", uploadsDir);
+
+try {
+    if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+        console.log("Carpeta uploads creada exitosamente");
+    }
+} catch (err) {
+    console.error("ERROR CRÍTICO CREANDO CARPETA:", err.message);
 }
 
 app.use(cors());
