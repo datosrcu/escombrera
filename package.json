@@ -2,9 +2,6 @@
   "name": "escombrera-municipal",
   "version": "1.0.0",
   "description": "Gestión de Escombrera Municipal",
-  "engines": {
-    "node": ">=20.0.0"
-  },
   "workspaces": [
     "client",
     "server"
