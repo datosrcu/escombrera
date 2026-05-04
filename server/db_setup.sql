@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS escombrera_db;
-USE escombrera_db;
+CREATE DATABASE IF NOT EXISTS `bbdd-escombrera`;
+USE `bbdd-escombrera`;
 
 CREATE TABLE IF NOT EXISTS categorias (
     id INT AUTO_INCREMENT PRIMARY KEY,
