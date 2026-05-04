@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Camera, RefreshCw, Check, Upload, Package, Truck, User, Building2, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001/api' : '/api';
+const UPLOADS_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001/uploads/' : '/uploads/';
 
 function App() {
   const [activeType, setActiveType] = useState('Ingreso');
@@ -256,10 +257,10 @@ function App() {
                         <td>
                           {row.foto_path ? (
                             <img 
-                              src={`http://localhost:3001/uploads/${row.foto_path}`} 
+                              src={`${UPLOADS_URL}${row.foto_path}`} 
                               alt="Evidencia" 
                               className="thumbnail"
-                              onClick={() => window.open(`http://localhost:3001/uploads/${row.foto_path}`, '_blank')}
+                              onClick={() => window.open(`${UPLOADS_URL}${row.foto_path}`, '_blank')}
                             />
                           ) : '-'}
                         </td>

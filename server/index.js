@@ -12,6 +12,9 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Servir archivos estáticos del frontend (Producción)
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
 // Configuración de MySQL
 const db = mysql.createConnection({
     host: 'localhost',
@@ -106,6 +109,11 @@ app.get('/api/movimientos/historial', (req, res) => {
         if (err) return res.status(500).json(err);
         res.json(results);
     });
+});
+
+// Ruta comodín para el frontend
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 app.listen(port, () => {
