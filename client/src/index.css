@@ -125,6 +125,26 @@ select:focus, input:focus {
   border-color: var(--primary);
 }
 
+/* Fix for white dropdowns in some browsers */
+select {
+  color-scheme: dark;
+}
+
+select option {
+  background-color: #1e293b;
+  color: white;
+}
+
+/* Fix for white dropdowns in some browsers */
+select {
+  color-scheme: dark;
+}
+
+select option {
+  background-color: #1e293b;
+  color: white;
+}
+
 .pill-container {
   display: flex;
   gap: 0.5rem;
