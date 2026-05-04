@@ -31,7 +31,7 @@ const db = mysql.createConnection({
 
 db.connect(err => {
     if (err) {
-        console.error('Error conectando a la base de datos:', err);
+        console.error("DETALLE DEL ERROR EN EL SERVIDOR:", err);
         return;
     }
     console.log('Conectado a MySQL');
@@ -76,15 +76,25 @@ app.post('/api/entidades', (req, res) => {
     });
 });
 
-// Registrar movimiento
-app.post('/api/movimientos', upload.single('foto'), (req, res) => {
-    const { entidad_id, tipo_movimiento, material, volumen, vehiculo_tipo } = req.body;
-    const foto_path = req.file ? req.file.filename : null;
+// Registrar movimiento con manejo de errores mejorado
+app.post('/api/movimientos', (req, res) => {
+    upload.single('foto')(req, res, (err) => {
+        if (err) {
+            console.error("ERROR DE MULTER (FOTOS):", err);
+            return res.status(500).json({ error: 'Error al procesar la foto', details: err.message });
+        }
 
-    const query = 'INSERT INTO movimientos (entidad_id, tipo_movimiento, material, volumen, vehiculo_tipo, foto_path) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(query, [entidad_id, tipo_movimiento, material, volumen, vehiculo_tipo, foto_path], (err, result) => {
-        if (err) return res.status(500).json(err);
-        res.json({ message: 'Movimiento registrado con éxito', id: result.insertId });
+        const { entidad_id, tipo_movimiento, material, volumen, vehiculo_tipo } = req.body;
+        const foto_path = req.file ? req.file.filename : null;
+
+        const query = 'INSERT INTO movimientos (entidad_id, tipo_movimiento, material, volumen, vehiculo_tipo, foto_path) VALUES (?, ?, ?, ?, ?, ?)';
+        db.query(query, [entidad_id || null, tipo_movimiento, material, volumen, vehiculo_tipo, foto_path], (dbErr, result) => {
+            if (dbErr) {
+                console.error("ERROR DE BASE DE DATOS:", dbErr);
+                return res.status(500).json({ error: 'Error al insertar en DB', details: dbErr.message });
+            }
+            res.json({ message: 'Movimiento registrado con éxito', id: result.insertId });
+        });
     });
 });
 
