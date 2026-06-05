@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `bbdd-escombrera`;
-USE `bbdd-escombrera`;
+CREATE DATABASE IF NOT EXISTS `escombrera-dev`;
+USE `escombrera-dev`;
 
 CREATE TABLE IF NOT EXISTS categorias (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS movimientos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     entidad_id INT,
     tipo_movimiento ENUM('Ingreso', 'Egreso') NOT NULL,
-    material ENUM('Ramas', 'Tierra', 'Escombros') NOT NULL,
+    material ENUM('Ramas', 'Tierra', 'Escombros', 'Mezcla') NOT NULL,
     volumen DECIMAL(10,2) NOT NULL,
     vehiculo_tipo VARCHAR(50),
     foto_path VARCHAR(255),

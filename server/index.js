@@ -135,7 +135,7 @@ app.get('/api/movimientos/historial', (req, res) => {
 });
 
 // Ruta comodín para el frontend
-app.get('/*', (req, res) => {
+app.get('*splat', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 

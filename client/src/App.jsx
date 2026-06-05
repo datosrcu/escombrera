@@ -282,7 +282,7 @@ const startCamera = async () => {
 
       {/* Dashboard Stats */}
       <div className="dashboard-grid">
-        {['Ramas', 'Tierra', 'Escombros'].map(mat => {
+        {['Ramas', 'Tierra', 'Escombros', 'Mezcla'].map(mat => {
           const stat = dailyStats.find(s => s.material === mat);
           return (
             <motion.div 
@@ -408,7 +408,7 @@ const startCamera = async () => {
           <div className="form-group">
             <label>Tipo de Material</label>
             <div className="pill-container">
-              {['Ramas', 'Tierra', 'Escombros'].map(m => (
+              {['Ramas', 'Tierra', 'Escombros', 'Mezcla'].map(m => (
                 <div 
                   key={m} 
                   className={`pill ${material === m ? 'active' : ''}`}
