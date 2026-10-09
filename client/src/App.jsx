@@ -107,7 +107,7 @@ export default function App() {
       setVolumen(5);
     } else if (actorType === 'Particular') {
       setVehiculo('Camioneta');
-      setVolumen(3);
+      setVolumen(1);
     }
   }, [actorType, categories]);
 
@@ -116,7 +116,7 @@ export default function App() {
     setVehiculo(nuevoVehiculo);
     if (nuevoVehiculo === 'Batea') setVolumen(20);
     else if (nuevoVehiculo === 'Camión') setVolumen(5);
-    else if (nuevoVehiculo === 'Camioneta') setVolumen(3);
+    else if (nuevoVehiculo === 'Camioneta') setVolumen(1);
     else if (nuevoVehiculo === 'Auto') setVolumen(1);
   };
 
@@ -608,7 +608,7 @@ export default function App() {
                       className={`choice-pill ${vehiculo === 'Camioneta' ? 'active' : ''}`}
                       onClick={() => handleVehicleChange('Camioneta')}
                     >
-                      Camioneta (3 m³)
+                      Camioneta (1 m³)
                     </button>
                   </>
                 ) : (
@@ -625,7 +625,7 @@ export default function App() {
                       className={`choice-pill ${vehiculo === 'Camioneta' ? 'active' : ''}`}
                       onClick={() => handleVehicleChange('Camioneta')}
                     >
-                      Camioneta (3 m³)
+                      Camioneta (1 m³)
                     </button>
                     <button 
                       type="button"
@@ -943,13 +943,12 @@ export default function App() {
                           <th>Material</th>
                           <th>Volumen</th>
                           <th>Evidencia</th>
-                          <th>Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
                         {filteredHistory.length === 0 ? (
                           <tr>
-                            <td colSpan="8" style={{ textAlign: 'center', padding: '2.5rem', color: 'var(--text-muted)' }}>
+                            <td colSpan="7" style={{ textAlign: 'center', padding: '2.5rem', color: 'var(--text-muted)' }}>
                               No se encontraron registros de movimientos.
                             </td>
                           </tr>
@@ -995,16 +994,6 @@ export default function App() {
                                 ) : (
                                   <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>-</span>
                                 )}
-                              </td>
-                              <td>
-                                <button 
-                                  className="btn btn-secondary btn-icon"
-                                  style={{ padding: '0.4rem', color: '#f87171' }}
-                                  title="Eliminar registro"
-                                  onClick={() => handleDeleteMovement(row.id)}
-                                >
-                                  <Trash2 size={16} />
-                                </button>
                               </td>
                             </tr>
                           ))
